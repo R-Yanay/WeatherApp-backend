@@ -45,7 +45,7 @@ Die App laeuft auf `http://localhost:8080`.
 
 ## Nutzung
 
-### Wetter fuer eine Stadt abfragen
+### Aktuelles Wetter abfragen
 
 ```
 GET http://localhost:8080/api/weather?city=Zurich
@@ -63,6 +63,22 @@ GET http://localhost:8080/api/weather?city=Zurich
   "description": "leicht bewölkt",
   "icon": "02d"
 }
+```
+
+### 5-Tage-Vorhersage abfragen
+
+```
+GET http://localhost:8080/api/forecast?city=Zurich
+```
+
+**Antwort (JSON):**
+
+```json
+[
+  {"date":"Montag","tempMin":18.2,"tempMax":24.5,"description":"leicht bewölkt","icon":"02d"},
+  {"date":"Dienstag","tempMin":16.0,"tempMax":22.1,"description":"bewölkt","icon":"04d"},
+  ...
+]
 ```
 
 ### Fehlerfaelle
@@ -102,10 +118,11 @@ Dieses Projekt zeigt wichtige Spring Boot Konzepte:
 
 | Konzept | Wo? |
 |---------|-----|
-| **REST API** | `@RestController`, `@GetMapping` |
+| **REST API** | `@RestController`, `@GetMapping` (2 Endpunkte) |
 | **Dependency Injection** | Konstruktor-Injection im Controller |
 | **Configuration** | `@Value` fuer API-Key aus `application.properties` |
 | **HTTP-Client** | `RestTemplate` fuer API-Anfragen |
+| **JSON-Parsing** | Manuelles Parsing der OpenWeatherMap-Antwort |
 | **Exception Handling** | `@RestControllerAdvice` fuer globale Fehler |
 | **Tests** | JUnit 5 + Mockito fuer Service-Tests |
 
@@ -119,9 +136,13 @@ mvn test
 
 Dieses Projekt zeigt:
 
-- **Spring Boot** REST API Entwicklung
-- **Externe API-Integration** (OpenWeatherMap)
-- **JSON-Parsing** und DTO-Muster
+- **Spring Boot** REST API Entwicklung mit mehreren Endpunkten
+- **Externe API-Integration** (OpenWeatherMap) mit JSON-Parsing
+- **DTO-Muster** fuer Datenuebertragung
 - **Exception Handling** mit freundlichen Fehlermeldungen
 - **Testgetriebene Entwicklung** mit JUnit und Mockito
 - **Git** Versionskontrolle mit `.gitignore` fuer Secrets
+
+## JavaFX Frontend
+
+Fuer eine grafische Oberflache siehe das begleitende Projekt [WeatherAppGUI](https://github.com/dein-name/WeatherAppGUI). Es ruft diese API auf und zeigt das Wetter in einem Desktop-Fenster an.
