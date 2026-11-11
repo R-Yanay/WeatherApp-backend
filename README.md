@@ -145,4 +145,4 @@ Dieses Projekt zeigt:
 
 ## JavaFX Frontend
 
-Fuer eine grafische Oberflache siehe das begleitende Projekt [WeatherAppGUI](https://github.com/dein-name/WeatherAppGUI). Es ruft diese API auf und zeigt das Wetter in einem Desktop-Fenster an.
+Fuer eine grafische Oberflache siehe das begleitende Projekt [WeatherAppGUI](https://github.com/R-Yanay/WeatherApp-frontend). Es ruft diese API auf und zeigt das Wetter in einem Desktop-Fenster an.
