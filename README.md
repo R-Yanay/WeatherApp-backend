@@ -112,6 +112,40 @@ WeatherApp/
 └── WeatherAppApplication.java    # Spring Boot Einstieg
 ```
 
+## Datenfluss
+
+So verarbeitet Spring Boot eine Anfrage — immer gleich, in 5 Schritten:
+
+```
+1. Browser:  GET /api/weather?city=Zurich
+         ↓
+2. Tomcat-Server empfaengt die Anfrage
+         ↓
+3. Spring Boot matcht die URL: @RequestMapping + @GetMapping → WeatherController
+         ↓
+4. Controller ruft Service auf (Dependency Injection)
+         ↓
+5. Service ruft OpenWeatherMap API auf (RestTemplate)
+         ↓
+6. Service parst JSON und fuellt WeatherResponse (DTO)
+         ↓
+7. Controller gibt WeatherResponse zurueck
+         ↓
+8. Jackson (automatisch) wandelt das Objekt zu JSON
+         ↓
+9. Browser zeigt: {"city":"Zurich","temperature":22.5,...}
+```
+
+**Die 3 Regeln, die Spring Boot immer befolgt:**
+
+| Regel | Was Spring Boot macht |
+|-------|----------------------|
+| **URL + HTTP-Methode → Controller** | Matcht die URL automatisch (@RequestMapping + @GetMapping) |
+| **Konstruktor → Dependency Injection** | Fueellt den Konstruktor automatisch (@Service) |
+| **Java-Objekt → JSON** | Wandelt Getter zu JSON automatisch (Jackson) |
+
+**Du schreibst nur Schritt 4 und 6.** Schritte 1–3 und 7–9 macht Spring Boot automatisch.
+
 ## Lernen
 
 Dieses Projekt zeigt wichtige Spring Boot Konzepte:
